@@ -26,4 +26,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"toLoggedIn"]) {
+        NSLog(@"Yea");
+    
+    }
+}
+
+- (IBAction)loginButton:(id)sender {
+    
+    [self performSegueWithIdentifier:@"toLoggedIn" sender:self];
+}
 @end
