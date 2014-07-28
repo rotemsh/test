@@ -10,6 +10,9 @@
 
 @interface ViewController ()
 
+@property (nonatomic) NSString *testString; //Everything is test here
+
+
 @end
 
 @implementation ViewController
