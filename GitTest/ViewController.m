@@ -11,15 +11,6 @@
 @interface ViewController ()
 
 @property (nonatomic) NSString *testString; //Everything is test here
-//this is another test
-
-//another one
-
-//Branch test
-
-//diz #1
-
-//kjhkjhjkh
 
 @end
 
@@ -28,7 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.loginView.readPermissions = @[@"public_profile", @"email", @"user_friends"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,16 +29,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"toLoggedIn"]) {
-        NSLog(@"Yea");
-    
-    }
-}
 
-- (IBAction)loginButton:(id)sender {
-    
-    [self performSegueWithIdentifier:@"toLoggedIn" sender:self];
-}
+
 @end

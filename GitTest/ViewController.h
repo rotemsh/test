@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+
 
 @interface ViewController : UIViewController
-- (IBAction)loginButton:(id)sender;
+
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
+
 
 @end
