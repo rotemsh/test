@@ -43,9 +43,41 @@
 
 -(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
 {
-//    self.profilePictureView.profileID = nil;
+    self.profilePictureView.profileID = nil;
     self.nameLabel.text = @"";
     self.statusLabel.text = @"You're not logged in! :(";
+}
+
+-(void)loginView:(FBLoginView *)loginView handleError:(NSError *)error
+{
+    NSString *alertMessage, *alertTitle;
+    
+    if ([FBErrorUtility shouldNotifyUserForError:error]) {
+        alertTitle = @"Facebook Error";
+        alertMessage = [FBErrorUtility userMessageForError:error];
+    }else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryAuthenticationReopenSession)
+    {
+        alertTitle = @"Session Error";
+        alertMessage = @"Your current session is no longer valid. Please log in again.";
+        
+    }else if ([FBErrorUtility errorCategoryForError:error] == FBErrorCategoryUserCancelled)
+    {
+        NSLog(@"User cancelled login");
+    }else {
+        alertTitle = @"Something went wrong dude";
+        alertMessage = @"WTF?! try again later...";
+        NSLog(@"The error: \n%@", error);
+        //        NSLog(@"The error: \n%@", [error localizedDescription]);
+    }
+    
+    if (alertMessage) {
+        [[[UIAlertView alloc]initWithTitle:alertTitle
+                                   message:alertMessage
+                                  delegate:nil
+                         cancelButtonTitle:@"Ok"
+                         otherButtonTitles:nil, nil]show];
+    }
+    
 }
 
 @end
